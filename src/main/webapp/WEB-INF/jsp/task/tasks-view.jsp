@@ -23,11 +23,31 @@
 				</c:when>
 				
 				<c:otherwise>
-					<c:forEach items="${tasks}" var="task" >
-						<li id="task_<c:out value="${task.id}"/>">
-							<div><c:out value="${task.shortName}" /></div>
-						</li>
-					</c:forEach>
+					<table class="table table-bordered table-hover text-center">
+						<thead class="bg-success text-light">
+							<tr>
+								<th scope="col">Short name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Change</th>
+							</tr>
+						</thead>
+						<tbody class="table-striped">
+							<c:forEach items="${tasks}" var="task">
+								<tr>
+									<td>${task.shortName}</td>
+									<td>${task.description}</td>
+									<td>
+										<form action="<c:url value="tasks/delete" />" method="post">
+											<input type="hidden" name="idTask" value="${task.id}">				   
+									    	<button type="submit" class="btn btn-outline-success form-control">
+												Delete
+											</button>			    
+										</form>																		
+									</td>				
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>					
 				</c:otherwise>
 			</c:choose>	
  
