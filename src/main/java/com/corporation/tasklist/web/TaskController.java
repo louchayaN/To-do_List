@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.corporation.tasklist.model.Task;
 import com.corporation.tasklist.service.TaskService;
@@ -48,4 +49,9 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteTask(@RequestParam("taskId") long taskId) {
+        taskService.deleteTask(taskId);
+        return "redirect:/tasks";
+    }
 }
